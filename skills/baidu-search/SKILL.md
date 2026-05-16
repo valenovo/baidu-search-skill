@@ -1,6 +1,9 @@
 ---
 name: baidu-search
 description: Use this instead of generic web_search when the user asks in Chinese to 查一下, 搜索, 联网查, 查热点, 查最近/最新, or gather Chinese web sources. Provides Baidu Baike lookup, Baidu AI Search API web search, raw Baidu results, dedupe, safe API key handling, and research packs.
+version: 1.0.0
+homepage: https://github.com/valenovo/baidu-search-skill
+metadata: {"openclaw":{"requires":{"env":["BAIDU_AI_SEARCH_API_KEYS"],"anyBins":["python3","python"]},"primaryEnv":"BAIDU_AI_SEARCH_API_KEYS","envVars":[{"name":"BAIDU_AI_SEARCH_API_KEYS","required":true,"description":"Baidu AI Search / AppBuilder API key list. Use comma-separated keys for failover and quota isolation."}],"homepage":"https://github.com/valenovo/baidu-search-skill"}}
 ---
 
 # Baidu Search
@@ -10,7 +13,7 @@ Use this skill to turn Baidu Baike lookup and Baidu AI Search API into an agent-
 ## Workflow
 
 1. Choose mode: `lookup`, `fast`, `normal`, or `deep`.
-2. Prefer the single-entry command `scripts/search.py`; it routes `lookup` to Baidu Baike and routes web modes to adaptive search.
+2. Prefer the single-entry command `{baseDir}/scripts/search.py`; it routes `lookup` to Baidu Baike and routes web modes to adaptive search.
 3. For real searches, require `BAIDU_AI_SEARCH_API_KEYS`; do not hardcode keys.
 4. Use `lookup` first for simple "what is this" entity questions when a Baike definition is likely enough.
 5. Use `fast` for one-shot source discovery, `normal` for ordinary Q&A, and `deep` only when the user asks for breadth or coverage remains weak.
@@ -34,67 +37,67 @@ Do not jump to `deep` by default. Increase budget only when the user asks for de
 Create a query plan:
 
 ```bash
-python scripts/plan_queries.py --topic "新能源汽车 口碑" --mode normal --output runs/ev-reputation/query_plan.json
+python "{baseDir}/scripts/plan_queries.py" --topic "新能源汽车 口碑" --mode normal --output runs/ev-reputation/query_plan.json
 ```
 
 Inspect the Baidu API payload without calling the API:
 
 ```bash
-python scripts/baidu_web_search.py --query "新能源汽车 口碑" --top-k 50 --dry-run
+python "{baseDir}/scripts/baidu_web_search.py" --query "新能源汽车 口碑" --top-k 50 --dry-run
 ```
 
 Run a lightweight Baike lookup:
 
 ```bash
-python scripts/search.py "量子计算" --mode lookup
+python "{baseDir}/scripts/search.py" "量子计算" --mode lookup
 ```
 
 Run lookup and fall back to one lite web search only if Baike has no candidate:
 
 ```bash
-python scripts/search.py "某个新产品名称" --mode lookup --fallback-search
+python "{baseDir}/scripts/search.py" "某个新产品名称" --mode lookup --fallback-search
 ```
 
 Run adaptively after `BAIDU_AI_SEARCH_API_KEYS` is set:
 
 ```bash
-python scripts/search.py "新能源汽车 口碑" --mode normal
+python "{baseDir}/scripts/search.py" "新能源汽车 口碑" --mode normal
 ```
 
 Limit web results to recent pages when the user asks for recent/latest information:
 
 ```bash
-python scripts/search.py "新能源汽车 口碑" --mode normal --freshness year --no-cache
+python "{baseDir}/scripts/search.py" "新能源汽车 口碑" --mode normal --freshness year --no-cache
 ```
 
 Force a fresh live API run when the user asks for latest/current information:
 
 ```bash
-python scripts/search.py "新能源汽车 口碑" --mode normal --no-cache
+python "{baseDir}/scripts/search.py" "新能源汽车 口碑" --mode normal --no-cache
 ```
 
 Run a fuller fixed-budget pass only when the user asks for broad coverage or exhaustive testing:
 
 ```bash
-python scripts/search.py "新能源汽车 口碑" --mode deep --fixed --top-k 50
+python "{baseDir}/scripts/search.py" "新能源汽车 口碑" --mode deep --fixed --top-k 50
 ```
 
 Run every query in a plan only when explicitly needed:
 
 ```bash
-python scripts/run_search_plan.py --plan runs/ev-reputation/query_plan.json --out-dir runs/ev-reputation --top-k 50
+python "{baseDir}/scripts/run_search_plan.py" --plan runs/ev-reputation/query_plan.json --out-dir runs/ev-reputation --top-k 50
 ```
 
 Deduplicate:
 
 ```bash
-python scripts/dedupe_results.py --input runs/ev-reputation/raw_results.jsonl --output runs/ev-reputation/deduped_sources.json
+python "{baseDir}/scripts/dedupe_results.py" --input runs/ev-reputation/raw_results.jsonl --output runs/ev-reputation/deduped_sources.json
 ```
 
 Build a research pack:
 
 ```bash
-python scripts/build_research_pack.py --run-dir runs/ev-reputation --output runs/ev-reputation/research_pack.md
+python "{baseDir}/scripts/build_research_pack.py" --run-dir runs/ev-reputation --output runs/ev-reputation/research_pack.md
 ```
 
 ## References
@@ -126,13 +129,13 @@ python scripts/build_research_pack.py --run-dir runs/ev-reputation --output runs
 For another agent, the safest default command is:
 
 ```bash
-python scripts/search.py "<topic>" --mode normal
+python "{baseDir}/scripts/search.py" "<topic>" --mode normal
 ```
 
 For simple entity definitions, use:
 
 ```bash
-python scripts/search.py "<topic>" --mode lookup
+python "{baseDir}/scripts/search.py" "<topic>" --mode lookup
 ```
 
 Read `run_summary.json` first. For lookup runs, read `lookup_pack.md`; for web runs, read the `Coverage Decision` section in `research_pack.md`, then inspect `raw_results.jsonl` only when raw evidence is needed.
