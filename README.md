@@ -50,7 +50,7 @@
 克隆仓库：
 
 ```bash
-git clone https://github.com/valen070424-prog/baidu-search-skill.git
+git clone https://github.com/valenovo/baidu-search-skill.git
 cd baidu-search-skill
 ```
 

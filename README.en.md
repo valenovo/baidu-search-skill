@@ -42,7 +42,7 @@ This project requires a Baidu AI Search API key for live search. If you do not h
 Clone the repository:
 
 ```bash
-git clone https://github.com/valen070424-prog/baidu-search-skill.git
+git clone https://github.com/valenovo/baidu-search-skill.git
 cd baidu-search-skill
 ```
 
