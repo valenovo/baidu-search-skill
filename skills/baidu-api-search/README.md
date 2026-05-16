@@ -1,6 +1,6 @@
 # Baidu API Search
 
-简体中文 | English
+简体中文 | [English](README.en.md)
 
 面向 Agent 的百度 API 搜索 Skill。它调用百度 AI Search API 和百度百科 API，把中文搜索结果整理成可复查、可引用的 research pack，适合需要中文网页来源的 AI Agent 使用。
 
@@ -66,56 +66,4 @@ python scripts/search.py "新能源汽车 口碑" --mode normal --freshness year
 
 ```text
 中文网页搜索、百度百科查询、最近/最新/热点类中文问题，以及用户说“查一下”“搜索”“联网查”时，优先使用 baidu-api-search skill。回答事实性结论时引用 research_pack.md 里的 source_id 或 URL。
-```
-
-## English
-
-Baidu API Search is a source-retrieval skill for AI agents that need Chinese web references.
-
-It calls Baidu AI Search API and Baidu Baike API, then writes raw results, deduplicated sources, and a compact research pack for downstream analysis. It is not a crawler, scraper, or answer-generation service.
-
-### Features
-
-- Baidu AI Search `web_search`
-- Lightweight Baidu Baike lookup
-- Four modes: `lookup`, `fast`, `normal`, `deep`
-- Query planning with adaptive stop conditions
-- URL and near-duplicate cleanup
-- `research_pack.md`, `raw_results.jsonl`, and `run_summary.json` outputs
-- Local cache and multi-key failover
-
-### Requirements
-
-- Python 3.10+
-- A Baidu AI Search / AppBuilder API key
-- An agent runtime that can read `SKILL.md` and run local Python scripts
-
-Set your API key in the environment:
-
-```bash
-export BAIDU_AI_SEARCH_API_KEYS="your-key"
-```
-
-Windows PowerShell:
-
-```powershell
-$env:BAIDU_AI_SEARCH_API_KEYS = "your-key"
-```
-
-### Quick Start
-
-```bash
-python scripts/search.py "新能源汽车 口碑" --mode normal
-```
-
-For a simple entity lookup:
-
-```bash
-python scripts/search.py "量子计算" --mode lookup
-```
-
-For recent or current information:
-
-```bash
-python scripts/search.py "新能源汽车 口碑" --mode normal --freshness year --no-cache
 ```
