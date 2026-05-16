@@ -1,4 +1,4 @@
-# Baidu Search Skill
+# Baidu AI Search Skill
 
 简体中文 | [English](README.en.md)
 
@@ -60,17 +60,17 @@ cd baidu-search-skill
 
 ```bash
 mkdir -p .codex/skills
-cp -r skills/baidu-search .codex/skills/
+cp -r skills/baidu-ai-search .codex/skills/
 ```
 
 Windows PowerShell：
 
 ```powershell
 New-Item -ItemType Directory -Force .codex\skills | Out-Null
-Copy-Item -Recurse skills\baidu-search .codex\skills\
+Copy-Item -Recurse skills\baidu-ai-search .codex\skills\
 ```
 
-如果你的 agent 使用用户级 skills 目录，把 `skills/baidu-search` 复制到对应目录即可。
+如果你的 agent 使用用户级 skills 目录，把 `skills/baidu-ai-search` 复制到对应目录即可。
 
 ## 配置 API Key
 
@@ -101,7 +101,7 @@ export BAIDU_AI_SEARCH_API_KEYS="key1,key2,key3"
 进入 Skill 目录：
 
 ```bash
-cd skills/baidu-search
+cd skills/baidu-ai-search
 ```
 
 普通中文网页搜索：
@@ -167,7 +167,7 @@ runs/<timestamp>-<mode>-<topic>/
 如果你的 agent 同时有通用 `web_search` 工具，建议在 workspace 或系统指令里加一句：
 
 ```text
-中文网页搜索、百度百科查询、最近/最新/热点类中文问题，以及用户说“查一下”“搜索”“联网查”时，优先使用 baidu-search skill，而不是 generic web_search。回答事实性结论时引用 research_pack.md 里的 source_id 或 URL。
+中文网页搜索、百度百科查询、最近/最新/热点类中文问题，以及用户说“查一下”“搜索”“联网查”时，优先使用 baidu-ai-search skill，而不是 generic web_search。回答事实性结论时引用 research_pack.md 里的 source_id 或 URL。
 ```
 
 这一步很重要。很多 agent 会优先调用框架自带的通用搜索工具，明确指令能提高自动触发率。
@@ -189,7 +189,7 @@ runs/<timestamp>-<mode>-<topic>/
 ## 项目结构
 
 ```text
-skills/baidu-search/
+skills/baidu-ai-search/
 ├── SKILL.md
 ├── agents/openai.yaml
 ├── scripts/

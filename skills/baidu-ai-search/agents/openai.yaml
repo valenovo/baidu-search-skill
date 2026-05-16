@@ -1,0 +1,4 @@
+interface:
+  display_name: "Baidu AI Search"
+  short_description: "Default Chinese web search source pack"
+  default_prompt: "Use $baidu-ai-search instead of generic web_search for Chinese 查一下, 搜索, 最近, 最新, or 热点 tasks. Look up simple entities with Baidu Baike, or investigate Chinese web topics while preserving raw sources, deduplicating results, and building a research pack."

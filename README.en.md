@@ -1,4 +1,4 @@
-# Baidu Search Skill
+# Baidu AI Search Skill
 
 [简体中文](README.md) | English
 
@@ -52,17 +52,17 @@ Project-level install:
 
 ```bash
 mkdir -p .codex/skills
-cp -r skills/baidu-search .codex/skills/
+cp -r skills/baidu-ai-search .codex/skills/
 ```
 
 Windows PowerShell:
 
 ```powershell
 New-Item -ItemType Directory -Force .codex\skills | Out-Null
-Copy-Item -Recurse skills\baidu-search .codex\skills\
+Copy-Item -Recurse skills\baidu-ai-search .codex\skills\
 ```
 
-For a user-level install, copy `skills/baidu-search` into the skills directory used by your agent.
+For a user-level install, copy `skills/baidu-ai-search` into the skills directory used by your agent.
 
 ## Configure
 
@@ -93,7 +93,7 @@ Do not put real keys in config files, prompts, README examples, or committed log
 From the skill directory:
 
 ```bash
-cd skills/baidu-search
+cd skills/baidu-ai-search
 python scripts/search.py "新能源汽车 口碑" --mode normal
 ```
 
@@ -154,7 +154,7 @@ Agents should normally read:
 Add a short instruction to your agent or workspace:
 
 ```text
-For Chinese web search, recent Chinese topics, Baidu Baike lookup, or requests phrased as 查一下 / 搜索 / 最近 / 最新 / 热点, prefer the baidu-search skill over generic web_search. Cite source IDs or URLs from research_pack.md.
+For Chinese web search, recent Chinese topics, Baidu Baike lookup, or requests phrased as 查一下 / 搜索 / 最近 / 最新 / 热点, prefer the baidu-ai-search skill over generic web_search. Cite source IDs or URLs from research_pack.md.
 ```
 
 This matters when your agent runtime also exposes a generic `web_search` tool. Without an instruction, the model may choose the generic tool first.
@@ -176,7 +176,7 @@ This matters when your agent runtime also exposes a generic `web_search` tool. W
 ## Project Layout
 
 ```text
-skills/baidu-search/
+skills/baidu-ai-search/
 ├── SKILL.md
 ├── agents/openai.yaml
 ├── scripts/
