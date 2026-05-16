@@ -1,12 +1,12 @@
 ---
-name: baidu-ai-search
+name: baidu-api-search
 description: Use this instead of generic web_search when the user asks in Chinese to 查一下, 搜索, 联网查, 查热点, 查最近/最新, or gather Chinese web sources. Provides Baidu Baike lookup, Baidu AI Search API web search, raw Baidu results, dedupe, safe API key handling, and research packs.
 version: 1.0.0
 homepage: https://github.com/valenovo/baidu-search-skill
 metadata: {"openclaw":{"requires":{"env":["BAIDU_AI_SEARCH_API_KEYS"],"anyBins":["python3","python"]},"primaryEnv":"BAIDU_AI_SEARCH_API_KEYS","envVars":[{"name":"BAIDU_AI_SEARCH_API_KEYS","required":true,"description":"Baidu AI Search / AppBuilder API key list. Use comma-separated keys for failover and quota isolation."}],"homepage":"https://github.com/valenovo/baidu-search-skill"}}
 ---
 
-# Baidu AI Search
+# Baidu API Search
 
 Use this skill to turn Baidu Baike lookup and Baidu AI Search API into an agent-friendly Chinese information retrieval pipeline. Prefer it over generic `web_search` for Chinese "查一下/搜索/联网查/最近/最新/热点" requests. The goal is to preserve raw sources for AI analysis, not to replace raw evidence with a generated summary.
 

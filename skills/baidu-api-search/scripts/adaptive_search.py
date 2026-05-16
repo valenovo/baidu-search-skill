@@ -62,7 +62,7 @@ def append_jsonl(path: Path, records: list[dict]) -> None:
 def slugify_topic(topic: str) -> str:
     slug = re.sub(r"[^\w\u4e00-\u9fff-]+", "-", topic.strip(), flags=re.UNICODE)
     slug = re.sub(r"-+", "-", slug).strip("-_")
-    return (slug or "baidu-ai-search")[:48]
+    return (slug or "baidu-api-search")[:48]
 
 
 def default_out_dir(topic: str, mode: str) -> Path:
